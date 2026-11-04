@@ -1,0 +1,11 @@
+{
+  "name": "lexi-lens",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lexi Lens — AI for Inclusive Education & Accessible Reading",
+  "scripts": {
+    "dev": "npm --prefix website run dev",
+    "build": "npm --prefix website run build && node -e \"require('fs').cpSync('website/dist', 'web', {recursive: true})\"",
+    "preview": "npm --prefix website run preview"
+  }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="lexi_lens">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Lexi Lens — Dyslexia-Friendly Reading & Audio</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Typography & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@0.91.4/open-dyslexic.min.css">
+
+  <style>
+    /* Global focus visible & typography fallbacks */
+    :focus-visible {
+      outline: 2px solid #9e9eff !important;
+      outline-offset: 2px !important;
+    }
+    body {
+      background-color: #181818;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-family: 'Lexend', 'OpenDyslexic', system-ui, -apple-system, sans-serif;
+    }
+  </style>
+
+  <script>
+    // Web Speech API Helper with boundary tracking for word highlighting
+    window.lexiTTS = {
+      utterance: null,
+      speak: function(text, rate, onWordCallback, onEndCallback, onErrorCallback) {
+        if (!('speechSynthesis' in window)) {
+          if (onErrorCallback) onErrorCallback('Speech synthesis not supported on this browser.');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utt = new SpeechSynthesisUtterance(text);
+        utt.rate = rate || 1.0;
+        utt.lang = 'en-US';
+        utt.onboundary = function(e) {
+          if (e.name === 'word' && onWordCallback) {
+            onWordCallback(e.charIndex, e.charLength || 0);
+          }
+        };
+        utt.onend = function() {
+          if (onEndCallback) onEndCallback();
+        };
+        utt.onerror = function(e) {
+          if (onErrorCallback) onErrorCallback(e.error || 'Speech error');
+        };
+        window.speechSynthesis.speak(utt);
+        window.lexiTTS.utterance = utt;
+      },
+      pause: function() {
+        if (window.speechSynthesis) window.speechSynthesis.pause();
+      },
+      resume: function() {
+        if (window.speechSynthesis) window.speechSynthesis.resume();
+      },
+      stop: function() {
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    };
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

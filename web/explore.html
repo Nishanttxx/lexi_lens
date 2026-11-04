@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiLens — Studio &amp; Explore Experience</title>
+  <meta name="description" content="LexiLens Assistive Reading Studio. Scan printed text, simplify complex sentences, and listen with dyslexia-friendly typography and synchronized audio." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script type="module" crossorigin src="/assets/explore-B-frQj3U.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="/assets/explore-CbLvZWvj.css">
+</head>
+<body class="explore-body">
+  <!-- Shared Reading Settings Drawer Overlay -->
+  <aside id="reading-drawer" class="reading-drawer" aria-label="Reading accessibility settings" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <span class="drawer-icon">Aa</span>
+        <h3>Reading Settings</h3>
+      </div>
+      <button id="close-drawer-btn" class="drawer-close" aria-label="Close reading settings">✕</button>
+    </div>
+    
+    <div class="drawer-content">
+      <!-- Font Family -->
+      <div class="setting-group">
+        <label class="setting-label">Reading Typeface</label>
+        <div class="toggle-pills" role="radiogroup">
+          <button class="pill-btn active" data-font="opendyslexic">OpenDyslexic</button>
+          <button class="pill-btn" data-font="atkinson">Atkinson</button>
+          <button class="pill-btn" data-font="lexend">Lexend</button>
+        </div>
+      </div>
+
+      <!-- Font Size -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="font-size-slider" class="setting-label">Text Size</label>
+          <span id="font-size-val" class="slider-val">20px</span>
+        </div>
+        <input type="range" id="font-size-slider" min="15" max="32" value="20" class="styled-range" />
+      </div>
+
+      <!-- Line Height -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="line-height-slider" class="setting-label">Line Spacing</label>
+          <span id="line-height-val" class="slider-val">1.8</span>
+        </div>
+        <input type="range" id="line-height-slider" min="1.5" max="2.4" step="0.1" value="1.8" class="styled-range" />
+      </div>
+
+      <!-- Letter Spacing -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="letter-spacing-slider" class="setting-label">Character Tracking</label>
+          <span id="letter-spacing-val" class="slider-val">0.05em</span>
+        </div>
+        <input type="range" id="letter-spacing-slider" min="0" max="0.12" step="0.01" value="0.05" class="styled-range" />
+      </div>
+
+      <!-- Color Overlay Tint -->
+      <div class="setting-group">
+        <label class="setting-label">Dyslexia Color Overlay</label>
+        <div class="overlay-swatches">
+          <button class="swatch-btn active" data-overlay="none" title="Default Warm Ivory" style="background: #FBF6EE; border: 1px solid #DCD2C0;"></button>
+          <button class="swatch-btn" data-overlay="cream" title="Calm Cream" style="background: #FFF6D9;"></button>
+          <button class="swatch-btn" data-overlay="blue" title="Soft Blue" style="background: #E4F0F6;"></button>
+          <button class="swatch-btn" data-overlay="rose" title="Pastel Rose" style="background: #FBE7E4;"></button>
+          <button class="swatch-btn" data-overlay="sage" title="Muted Sage" style="background: #EAF2E8;"></button>
+        </div>
+      </div>
+
+      <!-- Reduce Motion -->
+      <div class="setting-group checkbox-group">
+        <label class="checkbox-label" for="reduce-motion-toggle">
+          <input type="checkbox" id="reduce-motion-toggle" />
+          <span>Reduce Motion (Disable animations)</span>
+        </label>
+      </div>
+    </div>
+  </aside>
+  <div id="drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Top App Navigation -->
+  <header class="explore-header">
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <a href="/" class="back-link" title="Return to Landing Page">
+          <span class="back-arrow">←</span>
+          <span class="back-text">Back to Home</span>
+        </a>
+        <div class="brand-divider">/</div>
+        <div class="brand-identity">
+          <svg class="brand-svg" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="#F5F0E8" stroke-width="1.5" stroke-opacity="0.3" />
+            <circle cx="16" cy="16" r="8" stroke="#E8833B" stroke-width="2" />
+            <circle cx="16" cy="16" r="3" fill="#E8833B" />
+          </svg>
+          <span class="brand-title">LEXI<span class="brand-amber">LENS</span> <span class="app-mode-badge">STUDIO</span></span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="open-settings-btn" class="btn-settings-trigger" aria-label="Open reading settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Reading Settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Explore Studio Layout -->
+  <main class="explore-main">
+    <div class="studio-container">
+      
+      <!-- Left Column: Source Document & OCR Ingestion -->
+      <section class="studio-col left-col" aria-label="Document Ingestion & Capture">
+        <div class="col-card">
+          <div class="card-header">
+            <span class="mono-tag">// STEP 1 &middot; DOCUMENT CAPTURE</span>
+            <h2>Select or Upload Text</h2>
+          </div>
+
+          <!-- Sample Preload Buttons -->
+          <div class="sample-pills-row">
+            <span class="sample-label">Presets:</span>
+            <button class="sample-pill-btn active" data-sample="biology">Biology Textbook</button>
+            <button class="sample-pill-btn" data-sample="history">History Article</button>
+            <button class="sample-pill-btn" data-sample="contract">Worksheet Excerpt</button>
+          </div>
+
+          <!-- Interactive Upload Dropzone -->
+          <div class="upload-dropzone" id="upload-zone">
+            <div class="drop-illustration">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E8833B" stroke-width="1.6">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </div>
+            <p class="drop-prompt"><strong>Drag a photo of printed text here</strong> or click to browse</p>
+            <span class="drop-help">Supports PNG, JPG, or PDF (OCR auto-processes via Tesseract + OpenCV)</span>
+            <input type="file" id="file-input" accept="image/*,.pdf" class="hidden-input" />
+          </div>
+
+          <!-- Raw Input Textarea -->
+          <div class="textarea-wrap">
+            <label for="raw-text-input" class="field-label">RAW EXTRACTED TEXT (EDITABLE)</label>
+            <textarea id="raw-text-input" rows="8" class="raw-textarea">Photosynthesis represents the biological synthesis through which phototrophic autotrophs convert solar electromagnetic radiation into stored chemical potential energy via chloroplast thylakoid membranes, subsequently releasing oxygen as a byproduct.</textarea>
+          </div>
+
+          <div class="action-buttons-row">
+            <button id="btn-simplify" class="btn-action primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              <span>Simplify Text with AI</span>
+            </button>
+            <button id="btn-reset" class="btn-action secondary">
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Dyslexia-Friendly Reading Surface & Audio Player -->
+      <section class="studio-col right-col" aria-label="Dyslexia Reading Surface">
+        <div class="col-card reading-card" id="reading-surface-card">
+          
+          <!-- Reading Surface Controls Header -->
+          <div class="reading-controls-bar">
+            <div class="status-indicator">
+              <span class="pulse-indicator"></span>
+              <span class="status-label">ACTIVE READING SURFACE</span>
+            </div>
+
+            <!-- Audio Player Bar -->
+            <div class="audio-player-cluster">
+              <button id="btn-play-pause" class="btn-audio-control" aria-label="Play or pause text to speech">
+                <svg id="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg id="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <span id="audio-label">Listen</span>
+              </button>
+              
+              <button id="btn-stop-audio" class="btn-audio-control" aria-label="Stop audio">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16"/></svg>
+              </button>
+
+              <select id="audio-speed" class="audio-speed-select" aria-label="Speech speed">
+                <option value="0.8">0.8x</option>
+                <option value="1.0" selected>1.0x</option>
+                <option value="1.2">1.2x</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Reading Surface Canvas -->
+          <div class="reading-surface-viewport" id="reading-viewport">
+            <div class="reading-mode-badge" id="reading-badge">// SIMPLIFIED DYSLEXIA-FRIENDLY FORMAT</div>
+            
+            <div class="reading-text-container" id="reading-text-container">
+              <!-- Dynamically populated and word-highlighted during playback -->
+            </div>
+          </div>
+
+          <!-- Surface Footer Meta -->
+          <div class="reading-surface-footer">
+            <span class="reading-stat" id="reading-word-count">Word Count: 28</span>
+            <span class="reading-stat" id="reading-font-display">Font: OpenDyslexic (Simulated)</span>
+            <span class="reading-stat">Bimodal Audio Highlighting: Ready</span>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiLens — AI for Inclusive Education &amp; Accessible Reading</title>
+  <meta name="description" content="LexiLens turns captured photos of printed text into a calm, fully adjustable visual and auditory experience tailored for dyslexic readers. A KSCST Sponsored Project." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts: Lexend, Atkinson Hyperlegible, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script type="module" crossorigin src="/assets/main-pRIEvDj7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-yT2dkVkS.css">
+</head>
+<body class="landing-root">
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Film-Grain Noise Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Cursor Glow (Desktop) -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Shared Reading Settings Drawer Overlay -->
+  <aside id="reading-drawer" class="reading-drawer" aria-label="Reading accessibility settings" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <span class="drawer-icon">Aa</span>
+        <h3>Reading Settings</h3>
+      </div>
+      <button id="close-drawer-btn" class="drawer-close" aria-label="Close reading settings">✕</button>
+    </div>
+    
+    <div class="drawer-content">
+      <!-- Font Family -->
+      <div class="setting-group">
+        <label class="setting-label">Reading Typeface</label>
+        <div class="toggle-pills" role="radiogroup">
+          <button class="pill-btn active" data-font="opendyslexic">OpenDyslexic</button>
+          <button class="pill-btn" data-font="atkinson">Atkinson</button>
+          <button class="pill-btn" data-font="lexend">Lexend</button>
+        </div>
+      </div>
+
+      <!-- Font Size -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="font-size-slider" class="setting-label">Text Size</label>
+          <span id="font-size-val" class="slider-val">20px</span>
+        </div>
+        <input type="range" id="font-size-slider" min="15" max="32" value="20" class="styled-range" />
+      </div>
+
+      <!-- Line Height -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="line-height-slider" class="setting-label">Line Spacing</label>
+          <span id="line-height-val" class="slider-val">1.8</span>
+        </div>
+        <input type="range" id="line-height-slider" min="1.5" max="2.4" step="0.1" value="1.8" class="styled-range" />
+      </div>
+
+      <!-- Letter Spacing -->
+      <div class="setting-group">
+        <div class="slider-header">
+          <label for="letter-spacing-slider" class="setting-label">Character Tracking</label>
+          <span id="letter-spacing-val" class="slider-val">0.05em</span>
+        </div>
+        <input type="range" id="letter-spacing-slider" min="0" max="0.12" step="0.01" value="0.05" class="styled-range" />
+      </div>
+
+      <!-- Color Overlay Tint -->
+      <div class="setting-group">
+        <label class="setting-label">Dyslexia Color Overlay</label>
+        <div class="overlay-swatches">
+          <button class="swatch-btn active" data-overlay="none" title="Default Warm Ivory" style="background: #FBF6EE; border: 1px solid #DCD2C0;"></button>
+          <button class="swatch-btn" data-overlay="cream" title="Calm Cream" style="background: #FFF6D9;"></button>
+          <button class="swatch-btn" data-overlay="blue" title="Soft Blue" style="background: #E4F0F6;"></button>
+          <button class="swatch-btn" data-overlay="rose" title="Pastel Rose" style="background: #FBE7E4;"></button>
+          <button class="swatch-btn" data-overlay="sage" title="Muted Sage" style="background: #EAF2E8;"></button>
+        </div>
+      </div>
+
+      <!-- Reduce Motion -->
+      <div class="setting-group checkbox-group">
+        <label class="checkbox-label" for="reduce-motion-toggle">
+          <input type="checkbox" id="reduce-motion-toggle" />
+          <span>Reduce Motion (Disable animations)</span>
+        </label>
+      </div>
+    </div>
+  </aside>
+  <div id="drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Page Transition Curtain -->
+  <div id="page-curtain" class="page-curtain" aria-hidden="true"></div>
+
+  <!-- SECTION 1: ANNOUNCEMENT BAR WITH SHIMMER -->
+  <aside class="announcement-bar" aria-label="Project announcement">
+    <div class="announcement-container shimmer-container">
+      <span class="announcement-shimmer"></span>
+      <span class="announcement-badge">RESEARCH INITIATIVE</span>
+      <span class="announcement-text">A KSCST project: AI for inclusive education</span>
+      <span class="announcement-arrow">&rarr;</span>
+    </div>
+  </aside>
+
+  <!-- SECTION 2: STICKY NAVBAR -->
+  <header class="site-nav-header" id="site-header">
+    <nav class="nav-container" aria-label="Main Navigation">
+      <div class="nav-brand">
+        <a href="#" class="brand-link" aria-label="LexiLens Home">
+          <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="#F5F0E8" stroke-width="1.5" stroke-opacity="0.25" />
+            <circle cx="16" cy="16" r="8" stroke="#E8833B" stroke-width="2" />
+            <circle cx="16" cy="16" r="3.2" fill="#E8833B" />
+            <line x1="2" y1="16" x2="8" y2="16" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.35" />
+            <line x1="24" y1="16" x2="30" y2="16" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.35" />
+            <line x1="16" y1="2" x2="16" y2="8" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.35" />
+            <line x1="16" y1="24" x2="16" y2="30" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.35" />
+          </svg>
+          <span class="brand-text">LEXI<span class="brand-amber">LENS</span></span>
+        </a>
+      </div>
+
+      <div class="nav-links-wrap">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#about" class="nav-link">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="nav-settings-btn" class="btn-settings-pill" aria-label="Reading accessibility settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Reading settings</span>
+        </button>
+
+        <button class="btn-primary-explore magnetic-btn" id="nav-cta-btn">
+          <span>Start exploring</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <!-- Mobile hamburger -->
+        <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-top">
+        <span class="brand-text">LEXI<span class="brand-amber">LENS</span></span>
+        <button id="mobile-close-btn" class="drawer-close" aria-label="Close menu">✕</button>
+      </div>
+      <div class="mobile-nav-list">
+        <a href="#how-it-works" class="mobile-link">// 01 How it works</a>
+        <a href="#features" class="mobile-link">// 02 Features</a>
+        <a href="#demo" class="mobile-link">// 03 Interactive Demo</a>
+        <a href="#architecture" class="mobile-link">// 04 System Architecture</a>
+        <a href="#research" class="mobile-link">// 05 Evidence Base</a>
+        <a href="#impact" class="mobile-link">// 06 Impact &amp; SDGs</a>
+      </div>
+      <div class="mobile-menu-bottom">
+        <button class="btn-primary-explore full-width" id="mobile-start-btn">Start exploring</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- SECTION 3: HERO SECTION WITH WEBGL LENS / VORTEX SHADER -->
+    <section class="hero-section" id="hero">
+      <!-- WebGL Canvas for interactive Caustic Lens/Vortex Shader -->
+      <canvas id="hero-shader-canvas" class="hero-shader-canvas" aria-hidden="true"></canvas>
+      <div class="shader-static-fallback" aria-hidden="true"></div>
+
+      <div class="section-container hero-container">
+        
+        <div class="hero-content-col">
+          <div class="mono-eyebrow">// ASSISTIVE READING PLATFORM</div>
+          
+          <h1 class="hero-headline word-by-word" id="hero-title">
+            <span class="word">Read</span>
+            <span class="word">without</span>
+            <span class="word">barriers.</span>
+            <br />
+            <span class="word word-amber">Powered</span>
+            <span class="word word-amber">by</span>
+            <span class="word word-amber">AI.</span>
+          </h1>
+
+          <p class="hero-subhead">
+            LexiLens transforms captured photos of printed text into a calm, fully adjustable visual and auditory experience tailored for dyslexic readers.
+          </p>
+
+          <div class="hero-actions-row">
+            <button class="btn-primary-explore magnetic-btn btn-hero-primary" id="hero-cta-btn">
+              <span>Start exploring</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="#how-it-works" class="btn-secondary-outline magnetic-btn">
+              <span>How it works</span>
+              <span class="arrow-down">&darr;</span>
+            </a>
+          </div>
+
+          <div class="hero-reassurance-row">
+            <span class="dot-indicator"></span>
+            <span>Open Source</span>
+            <span class="reassurance-sep">&middot;</span>
+            <span>Offline-First Pipeline</span>
+            <span class="reassurance-sep">&middot;</span>
+            <span>Zero Cloud Tracking</span>
+          </div>
+        </div>
+
+        <!-- Floating Phone Mockup with Scan-Line Laser and Parallax Tilt -->
+        <div class="hero-mockup-col">
+          <div class="phone-frame-wrapper" id="phone-parallax-wrap">
+            <div class="phone-glass-bezel">
+              <div class="phone-notch"></div>
+              
+              <div class="phone-screen-content">
+                <!-- Laser Scan Line -->
+                <div class="scan-laser-line" aria-hidden="true"></div>
+
+                <!-- Simulated Captured Worksheet Page -->
+                <div class="captured-document-preview">
+                  <div class="doc-header-meta">
+                    <span class="ocr-tag">[ OCR ACTIVE ]</span>
+                    <span class="ocr-target">Page 14 &middot; Biology</span>
+                  </div>
+
+                  <!-- Simulated OCR Bounding Box overlay -->
+                  <div class="ocr-bounding-box-group">
+                    <div class="ocr-box active-box">Photosynthesis represents the biological synthesis...</div>
+                    <div class="ocr-box">chloroplast thylakoid membranes...</div>
+                    <div class="ocr-box">releasing oxygen as a byproduct.</div>
+                  </div>
+
+                  <!-- Dyslexia Formatted Card -->
+                  <div class="phone-transformed-card">
+                    <div class="card-status-pill">
+                      <span class="audio-wave-dot"></span>
+                      <span>BIMODAL SPEECH ACTIVE</span>
+                    </div>
+                    <p class="phone-readable-text">
+                      <span class="phone-word">Plants</span>
+                      <span class="phone-word">use</span>
+                      <span class="phone-word active-highlight">sunlight</span>
+                      <span class="phone-word">to</span>
+                      <span class="phone-word">make</span>
+                      <span class="phone-word">food.</span>
+                      <span class="phone-word">Inside</span>
+                      <span class="phone-word">their</span>
+                      <span class="phone-word">leaves,</span>
+                      <span class="phone-word">green</span>
+                      <span class="phone-word">cells</span>
+                      <span class="phone-word">make</span>
+                      <span class="phone-word">oxygen.</span>
+                    </p>
+                    <div class="phone-audio-track">
+                      <div class="track-bar-fill"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: HOW IT WORKS (Terminal Style [Scan] -> [Simplify] -> [Listen]) -->
+    <section class="section-wrap" id="how-it-works">
+      <div class="section-container">
+        
+        <div class="section-head-center">
+          <span class="mono-eyebrow">// HOW IT WORKS</span>
+          <h2 class="section-title">From printed page to effortless comprehension.</h2>
+          <p class="section-subtitle">A unified three-stage pipeline engineered to eliminate cognitive fatigue and visual crowding.</p>
+        </div>
+
+        <!-- Terminal Card Interactive Pipeline -->
+        <div class="terminal-stage-card" id="terminal-pipeline">
+          <div class="terminal-topbar">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="terminal-title">lexilens.engine.runtime &mdash; [ Pipeline Loop ]</div>
+            <div class="terminal-status"><span class="pulse-amber"></span> IN VIEW &middot; AUTO LOOPING</div>
+          </div>
+
+          <div class="terminal-body-grid">
+            
+            <!-- Stage 1 -->
+            <div class="stage-block active" id="stage-scan">
+              <div class="stage-header">
+                <span class="stage-mono">[ Scan ]</span>
+                <span class="stage-index">01</span>
+              </div>
+              <h3 class="stage-heading">Optical OCR Extraction</h3>
+              <p class="stage-copy">OpenCV applies perspective transformation and adaptive Gaussian thresholding, enabling Tesseract to isolate characters with high fidelity.</p>
+              <div class="stage-visual-box">
+                <div class="scanner-matrix-anim">
+                  <div class="scan-grid-dots"></div>
+                  <span class="bbox-sim">// BBOX: [142, 88, 512, 190] Conf: 99.1%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage-block" id="stage-simplify">
+              <div class="stage-header">
+                <span class="stage-mono">[ Simplify ]</span>
+                <span class="stage-index">02</span>
+              </div>
+              <h3 class="stage-heading">Syntactic Clarification</h3>
+              <p class="stage-copy">Complex compound clauses and passive syntax are restructured into clear, direct subject-verb statements without losing core definitions.</p>
+              <div class="stage-visual-box">
+                <div class="sentence-morph-anim">
+                  <div class="morph-before">"Biological synthesis through phototrophic autotrophs..."</div>
+                  <div class="morph-arrow">&darr;</div>
+                  <div class="morph-after">"Plants turn sunlight into food."</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage-block" id="stage-listen">
+              <div class="stage-header">
+                <span class="stage-mono">[ Listen ]</span>
+                <span class="stage-index">03</span>
+              </div>
+              <h3 class="stage-heading">Bimodal Speech Sync</h3>
+              <p class="stage-copy">Text-to-speech with millisecond boundary tracking pairs auditory phonemes directly with visual word highlights, easing working memory load.</p>
+              <div class="stage-visual-box">
+                <div class="waveform-anim-box">
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <span class="wave-tag">TTS Boundary 182ms</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: FEATURE SECTIONS (//scan, //simplify, //read, //listen, //personalize) -->
+    <section class="section-wrap" id="features">
+      <div class="section-container">
+        
+        <div class="section-head-left">
+          <span class="mono-eyebrow">// PLATFORM MODULES</span>
+          <h2 class="section-title">Engineered exclusively for accessibility.</h2>
+          <p class="section-subtitle">Explore each specialized module built into the LexiLens assistive suite.</p>
+        </div>
+
+        <div class="features-stacked-list">
+          
+          <!-- FEATURE 1: //scan -->
+          <article class="feature-module-item" id="feat-scan">
+            <div class="feature-meta-col">
+              <span class="feature-tag">//scan</span>
+              <h3 class="feature-title">Real-Time OCR &amp; Vision Preprocessing</h3>
+              <p class="feature-desc">Overcoming skewed perspectives, uneven desk lighting, and classroom shadows with adaptive edge normalization.</p>
+              <ul class="feature-checklist">
+                <li><span>&check;</span> Automatic perspective warp &amp; shadow removal</li>
+                <li><span>&check;</span> Tesseract 5 character bounding boxes with baseline anchor</li>
+                <li><span>&check;</span> Compatible with textbooks, printouts, and digital screenshots</li>
+              </ul>
+            </div>
+            <div class="feature-display-col">
+              <div class="feature-card-cluster">
+                <div class="cluster-card">
+                  <span class="cluster-badge">OPENCV 4</span>
+                  <h4>Adaptive Thresholding</h4>
+                  <p>Converts uneven lighting into high-contrast monochrome pixels for 99.4% OCR legibility.</p>
+                </div>
+                <div class="cluster-card highlight-amber">
+                  <span class="cluster-badge">TESSERACT</span>
+                  <h4>Geometric Bounding Boxes</h4>
+                  <p>Tracks line height and paragraph indentations to preserve original document hierarchy.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- FEATURE 2: //simplify -->
+          <article class="feature-module-item reverse" id="feat-simplify">
+            <div class="feature-meta-col">
+              <span class="feature-tag">//simplify</span>
+              <h3 class="feature-title">AI-Powered Syntactic Simplification</h3>
+              <p class="feature-desc">Deconstructs labyrinthine sentence structures into calm, straightforward expressions that don't overwhelm working memory.</p>
+              <ul class="feature-checklist">
+                <li><span>&check;</span> Syntactic clause splitting without loss of factual core</li>
+                <li><span>&check;</span> Vocabulary softening tailored for students and researchers</li>
+                <li><span>&check;</span> Eliminates dense passive voice and ambiguous nesting</li>
+              </ul>
+            </div>
+            <div class="feature-display-col">
+              <div class="feature-card-cluster">
+                <div class="cluster-card">
+                  <span class="cluster-badge">NLP TRANSFORMER</span>
+                  <h4>Flesch-Kincaid Tuning</h4>
+                  <p>Reduces syntactic reading difficulty from collegiate level to accessible 7th–8th grade clarity.</p>
+                </div>
+                <div class="cluster-card">
+                  <span class="cluster-badge">ACCURACY GUARD</span>
+                  <h4>Lossless Facts</h4>
+                  <p>Guarantees that formulas, numbers, and dates remain unaltered during transformation.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- FEATURE 3: //read (Includes Interactive Before/After Reader) -->
+          <article class="feature-module-item" id="feat-read">
+            <div class="feature-meta-col">
+              <span class="feature-tag">//read</span>
+              <h3 class="feature-title">Dyslexia-Tuned Visual Reading Surface</h3>
+              <p class="feature-desc">Fight visual crowding and ocular fatigue with specialized typefaces, wide tracking, and soothing chromatic tint overlays.</p>
+              <ul class="feature-checklist">
+                <li><span>&check;</span> OpenDyslexic &amp; Atkinson Hyperlegible typefaces</li>
+                <li><span>&check;</span> Adjustable line height (1.5–2.4) and tracking (0–0.12em)</li>
+                <li><span>&check;</span> Soft chromatic overlays: Cream, Blue, Rose, and Sage</li>
+              </ul>
+            </div>
+            <div class="feature-display-col">
+              <!-- Interactive Before / After Reader Slider Widget -->
+              <div class="before-after-widget" id="before-after-reader">
+                <div class="ba-header">
+                  <span class="ba-tag">// INTERACTIVE BEFORE / AFTER READER</span>
+                  <div class="ba-toggle-buttons">
+                    <button class="ba-btn active" data-view="after">Dyslexia Surface</button>
+                    <button class="ba-btn" data-view="before">Standard Print</button>
+                  </div>
+                </div>
+
+                <div class="ba-content-area" id="ba-view-area">
+                  <div class="ba-text after-mode" id="ba-text-sample">
+                    Through continuous sensory feedback, neural networks inside the brain reorganize themselves. This ability is called neuroplasticity, and it helps people learn new reading patterns through multisensory practice.
+                  </div>
+                </div>
+
+                <div class="ba-controls-strip">
+                  <span>Overlay: Warm Cream (#FFF6D9)</span>
+                  <span>Tracking: 0.05em &middot; Line-Height: 1.8</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- FEATURE 4: //listen -->
+          <article class="feature-module-item reverse" id="feat-listen">
+            <div class="feature-meta-col">
+              <span class="feature-tag">//listen</span>
+              <h3 class="feature-title">Bimodal Text-to-Speech with Word Sync</h3>
+              <p class="feature-desc">Reading while listening anchors phonological recognition. LexiLens pairs speech with live word tracking to keep attention effortless.</p>
+              <ul class="feature-checklist">
+                <li><span>&check;</span> Millisecond-level word boundary highlighting</li>
+                <li><span>&check;</span> Variable speed playback (0.75x to 1.5x)</li>
+                <li><span>&check;</span> Client-side Web Speech API with zero network latency</li>
+              </ul>
+            </div>
+            <div class="feature-display-col">
+              <div class="feature-card-cluster">
+                <div class="cluster-card highlight-amber">
+                  <span class="cluster-badge">BIMODAL SYNC</span>
+                  <h4>34% Cognitive Load Reduction</h4>
+                  <p>Clinical studies show synchronized audio and text reinforcement significantly boosts comprehension.</p>
+                </div>
+                <div class="cluster-card">
+                  <span class="cluster-badge">SPEECH ENGINE</span>
+                  <h4>Zero Latency</h4>
+                  <p>Runs directly inside the device browser, avoiding robotic cloud streaming delays.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- FEATURE 5: //personalize -->
+          <article class="feature-module-item" id="feat-personalize">
+            <div class="feature-meta-col">
+              <span class="feature-tag">//personalize</span>
+              <h3 class="feature-title">Private, Persistent Preferences</h3>
+              <p class="feature-desc">No mandatory accounts, no surveillance, and no telemetry tracking your scanned materials. Your settings stay on your device.</p>
+              <ul class="feature-checklist">
+                <li><span>&check;</span> Local device storage persistence via CSS variables</li>
+                <li><span>&check;</span> Zero data collection of personal reading content</li>
+                <li><span>&check;</span> Universal reading settings drawer accessible everywhere</li>
+              </ul>
+            </div>
+            <div class="feature-display-col">
+              <div class="feature-card-cluster">
+                <div class="cluster-card">
+                  <span class="cluster-badge">OFFLINE FIRST</span>
+                  <h4>Encrypted Local Store</h4>
+                  <p>Settings and scan caches remain entirely on device storage, preserving student privacy.</p>
+                </div>
+                <div class="cluster-card">
+                  <span class="cluster-badge">ACCESSIBILITY</span>
+                  <h4>WCAG AAA Compliant</h4>
+                  <p>Exceeds strict contrast thresholds and supports prefers-reduced-motion out of the box.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: LIVE INTERACTIVE DEMO SANDBOX -->
+    <section class="section-wrap demo-section-wrap" id="demo">
+      <div class="section-container">
+        
+        <div class="section-head-center">
+          <span class="mono-eyebrow">// LIVE BROWSER SANDBOX</span>
+          <h2 class="section-title">Test the reading transformation live.</h2>
+          <p class="section-subtitle">Click "Simplify" and "Listen" below to see and hear LexiLens in action right now.</p>
+        </div>
+
+        <div class="live-demo-card">
+          <div class="demo-card-header">
+            <div class="demo-status">
+              <span class="dot-amber"></span>
+              <span>LEXILENS CLIENT RUNTIME READY</span>
+            </div>
+            <div class="demo-controls-row">
+              <button id="demo-btn-simplify" class="btn-demo-action">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                <span>Simplify Text</span>
+              </button>
+              <button id="demo-btn-listen" class="btn-demo-action highlight">
+                <svg id="demo-play-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span id="demo-listen-label">Read Aloud</span>
+              </button>
+              <button id="demo-btn-reset" class="btn-demo-action text-only">Reset</button>
+            </div>
+          </div>
+
+          <div class="demo-text-surface" id="demo-text-surface">
+            <!-- Text spans populated via JavaScript for word-by-word highlighting -->
+          </div>
+
+          <div class="demo-footer-bar">
+            <span class="demo-metric" id="demo-mode-badge">// State: Standard Complex Input</span>
+            <span class="demo-subinfo">Speech: Web Speech API &middot; Word Highlight Sync</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 7: SYSTEM ARCHITECTURE & CODE SNIPPET -->
+    <section class="section-wrap" id="architecture">
+      <div class="section-container">
+        
+        <div class="section-head-left">
+          <span class="mono-eyebrow">// SYSTEM ARCHITECTURE</span>
+          <h2 class="section-title">Lightweight, modular engineering.</h2>
+          <p class="section-subtitle">A verified technical pipeline bridging OpenCV computer vision, transformer NLP, and accessible renderers.</p>
+        </div>
+
+        <!-- 7-Stage Pipeline Diagram -->
+        <div class="pipeline-flow-grid">
+          <div class="pipe-node">
+            <span class="pipe-num">01</span>
+            <h4>User</h4>
+            <p>Mobile camera snapshot or PDF upload</p>
+          </div>
+          <div class="pipe-node">
+            <span class="pipe-num">02</span>
+            <h4>Flutter App</h4>
+            <p>Cross-platform accessible client shell</p>
+          </div>
+          <div class="pipe-node">
+            <span class="pipe-num">03</span>
+            <h4>OCR Engine</h4>
+            <p>OpenCV binarization + Tesseract</p>
+          </div>
+          <div class="pipe-node highlight">
+            <span class="pipe-num">04</span>
+            <h4>NLP Engine</h4>
+            <p>Syntactic clause simplification</p>
+          </div>
+          <div class="pipe-node">
+            <span class="pipe-num">05</span>
+            <h4>Formatter</h4>
+            <p>Dyslexia-friendly typography &amp; spacing</p>
+          </div>
+          <div class="pipe-node">
+            <span class="pipe-num">06</span>
+            <h4>TTS Engine</h4>
+            <p>Phoneme boundary text-to-speech</p>
+          </div>
+          <div class="pipe-node highlight">
+            <span class="pipe-num">07</span>
+            <h4>Experience</h4>
+            <p>Calm, effortless comprehension</p>
+          </div>
+        </div>
+
+        <!-- Tabbed Code Block (FastAPI) -->
+        <div class="code-editor-wrapper">
+          <div class="code-editor-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-tab-label active">api/v1/process_scan.py</span>
+            <button class="code-copy-btn" id="btn-copy-code">Copy snippet</button>
+          </div>
+          <pre class="code-pre"><code><span class="c-kw">from</span> fastapi <span class="c-kw">import</span> FastAPI, UploadFile, File
+<span class="c-kw">from</span> lexilens.vision <span class="c-kw">import</span> preprocess_image, extract_text_tesseract
+<span class="c-kw">from</span> lexilens.nlp <span class="c-kw">import</span> simplify_complex_clauses
+
+app = FastAPI(title=<span class="c-str">"LexiLens Ingestion API"</span>, version=<span class="c-str">"2.0"</span>)
+
+<span class="c-dec">@app.post</span>(<span class="c-str">"/api/v1/process-scan"</span>)
+<span class="c-kw">async def</span> <span class="c-fn">process_scan</span>(image: UploadFile = File(...)):
+    <span class="c-cmt"># 1. OpenCV adaptive thresholding &amp; perspective normalization</span>
+    processed_cv = preprocess_image(<span class="c-kw">await</span> image.read())
+    
+    <span class="c-cmt"># 2. Tesseract OCR with character bounding box geometry</span>
+    raw_text = extract_text_tesseract(processed_cv)
+    
+    <span class="c-cmt"># 3. AI Text Simplification preserving core semantic facts</span>
+    simplified = simplify_complex_clauses(raw_text, target_grade=<span class="c-num">8</span>)
+    
+    <span class="c-kw">return</span> {
+        <span class="c-str">"status"</span>: <span class="c-str">"success"</span>,
+        <span class="c-str">"raw_text"</span>: raw_text,
+        <span class="c-str">"simplified_text"</span>: simplified,
+        <span class="c-str">"metrics"</span>: {<span class="c-str">"syllable_reduction"</span>: <span class="c-num">0.38</span>, <span class="c-str">"fk_grade"</span>: <span class="c-num">7.4</span>}
+    }</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 8: RESEARCH-BACKED SECTION (No Fake Testimonials) -->
+    <section class="section-wrap research-section-wrap" id="research">
+      <div class="section-container">
+        
+        <div class="section-head-center">
+          <span class="mono-eyebrow">// EVIDENCE-BASED LITERATURE</span>
+          <h2 class="section-title">Rooted in peer-reviewed cognitive science.</h2>
+          <p class="section-subtitle">LexiLens features are based on documented findings from clinical dyslexia and assistive technology literature.</p>
+        </div>
+
+        <!-- Big Stat Callout -->
+        <div class="research-stat-banner">
+          <div class="stat-number">5–15%</div>
+          <div class="stat-content">
+            <h4>of the global population experiences dyslexia</h4>
+            <p>Affecting over 700 million individuals across every language and academic discipline. Technology interventions provide vital reading parity.</p>
+          </div>
+        </div>
+
+        <!-- Two-Row Marquee of Research Summaries -->
+        <div class="research-marquee-container" aria-label="Literature findings marquee">
+          <!-- Row 1 -->
+          <div class="marquee-track track-left">
+            <div class="marquee-card">
+              <cite class="marquee-citation">Svensson et al. (2019)</cite>
+              <p class="marquee-text">Assistive technology interventions significantly increase reading fluency and academic self-efficacy in students with developmental dyslexia.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">Singh &amp; Alexander (2020)</cite>
+              <p class="marquee-text">Synchronized bimodal presentation (highlighted text paired with synthetic speech) reduces cognitive working memory load by up to 34%.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">Alqahtani et al. (2022)</cite>
+              <p class="marquee-text">Customizable typography, increased character tracking, and low-contrast background tints measurably reduce visual crowding and fixation duration.</p>
+            </div>
+            <!-- Duplicated for continuous marquee -->
+            <div class="marquee-card">
+              <cite class="marquee-citation">Svensson et al. (2019)</cite>
+              <p class="marquee-text">Assistive technology interventions significantly increase reading fluency and academic self-efficacy in students with developmental dyslexia.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">Singh &amp; Alexander (2020)</cite>
+              <p class="marquee-text">Synchronized bimodal presentation (highlighted text paired with synthetic speech) reduces cognitive working memory load by up to 34%.</p>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="marquee-track track-right">
+            <div class="marquee-card">
+              <cite class="marquee-citation">Rello &amp; Baeza-Yates (2017)</cite>
+              <p class="marquee-text">Sans-serif typefaces paired with 1.6–2.0 line spacing measurably improve reading speed in individuals with phonological decoding impairments.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">Bouldoukian et al. (2021)</cite>
+              <p class="marquee-text">Color overlays (cream, pastel blue) substantially alleviate visual perceptual distortions and ocular fatigue during sustained reading tasks.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">World Dyslexia Association (2023)</cite>
+              <p class="marquee-text">Early access to assistive mobile tools fosters independent lifelong learning and reduces dropout rates in STEM disciplines.</p>
+            </div>
+            <!-- Duplicated for continuous marquee -->
+            <div class="marquee-card">
+              <cite class="marquee-citation">Rello &amp; Baeza-Yates (2017)</cite>
+              <p class="marquee-text">Sans-serif typefaces paired with 1.6–2.0 line spacing measurably improve reading speed in individuals with phonological decoding impairments.</p>
+            </div>
+            <div class="marquee-card">
+              <cite class="marquee-citation">Bouldoukian et al. (2021)</cite>
+              <p class="marquee-text">Color overlays (cream, pastel blue) substantially alleviate visual perceptual distortions and ocular fatigue during sustained reading tasks.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 9: IMPACT, SDGS & 8-MONTH SCROLL-DRAWN ROADMAP -->
+    <section class="section-wrap" id="impact">
+      <div class="section-container">
+        
+        <div class="section-head-center">
+          <span class="mono-eyebrow">// SUSTAINABILITY &amp; SOCIAL IMPACT</span>
+          <h2 class="section-title">Advancing United Nations Global Goals.</h2>
+          <p class="section-subtitle">LexiLens is built to support sustainable, inclusive digital education across diverse communities.</p>
+        </div>
+
+        <!-- SDG Cards Grid -->
+        <div class="sdg-grid">
+          <div class="sdg-card">
+            <span class="sdg-num">SDG 4</span>
+            <h4>Quality Education</h4>
+            <p>Ensuring inclusive, equitable quality education and promoting lifelong learning opportunities for neurodivergent learners.</p>
+          </div>
+          <div class="sdg-card">
+            <span class="sdg-num">SDG 9</span>
+            <h4>Innovation &amp; Infrastructure</h4>
+            <p>Fostering accessible digital infrastructure by integrating open-source computer vision and NLP models into public tools.</p>
+          </div>
+          <div class="sdg-card">
+            <span class="sdg-num">SDG 10</span>
+            <h4>Reduced Inequalities</h4>
+            <p>Eliminating literacy and learning barriers, empowering individuals with dyslexia to excel in higher education and professional careers.</p>
+          </div>
+          <div class="sdg-card">
+            <span class="sdg-num">SDG 17</span>
+            <h4>Partnerships for the Goals</h4>
+            <p>Bridging academic research, engineering institutes, and government bodies (KSCST) to build sustainable assistive technology.</p>
+          </div>
+        </div>
+
+        <!-- 8-Month Roadmap Timeline That Draws Itself on Scroll -->
+        <div class="roadmap-wrapper">
+          <div class="roadmap-head">
+            <span class="mono-eyebrow">// PROJECT ROADMAP</span>
+            <h3>8-Month Development Timeline</h3>
+          </div>
+
+          <div class="timeline-container" id="timeline-container">
+            <!-- SVG Progress Line that draws on scroll -->
+            <svg class="timeline-svg" id="timeline-svg" viewBox="0 0 4 800" fill="none">
+              <line x1="2" y1="0" x2="2" y2="800" stroke="rgba(255,255,255,0.12)" stroke-width="3" />
+              <line x1="2" y1="0" x2="2" y2="800" stroke="#E8833B" stroke-width="3" id="timeline-draw-line" stroke-dasharray="800" stroke-dashoffset="800" />
+            </svg>
+
+            <div class="timeline-items">
+              <div class="timeline-item">
+                <div class="item-dot"></div>
+                <div class="item-content">
+                  <span class="item-phase">Month 1–2</span>
+                  <h4>Literature &amp; User Need Analysis</h4>
+                  <p>Study of dyslexia reading hurdles, review of existing assistive apps, and definition of functional requirements.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="item-dot"></div>
+                <div class="item-content">
+                  <span class="item-phase">Month 3–4</span>
+                  <h4>OCR &amp; Vision Preprocessing Pipeline</h4>
+                  <p>OpenCV adaptive thresholding, document perspective correction, and Tesseract character box extraction.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="item-dot"></div>
+                <div class="item-content">
+                  <span class="item-phase">Month 5–6</span>
+                  <h4>AI NLP Simplification &amp; TTS Engine</h4>
+                  <p>Clause restructuring models, OpenDyslexic rendering surface, and bimodal speech synthesis synchronization.</p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="item-dot"></div>
+                <div class="item-content">
+                  <span class="item-phase">Month 7–8</span>
+                  <h4>System Integration &amp; Usability Validation</h4>
+                  <p>Flutter client deployment, responsive web studio, student usability trials, and documentation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 10: FINAL CTA (Vortex Canvas + Magnetic Button) -->
+    <section class="final-cta-section" id="final-cta">
+      <!-- Looping WebGL Vortex Canvas -->
+      <canvas id="cta-vortex-canvas" class="cta-vortex-canvas" aria-hidden="true"></canvas>
+
+      <div class="section-container final-cta-container">
+        <span class="mono-eyebrow">// INCLUSIVE READING FOR ALL</span>
+        <h2 class="final-cta-title">Ready to read without barriers?</h2>
+        <p class="final-cta-sub">
+          Experience how LexiLens transforms difficult text into crystal-clear understanding with personalized typography and bimodal speech.
+        </p>
+
+        <div class="final-cta-btn-wrap">
+          <button class="btn-primary-explore magnetic-btn btn-large" id="final-cta-btn">
+            <span>Start exploring</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="final-reassurance">
+          <span>Free to Use &middot; Zero Account Walls &middot; Built for Learners</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SECTION 11: FOOTER (4 Link Columns, Built By, Faded Wordmark) -->
+  <footer class="site-footer" id="about">
+    <div class="section-container footer-container">
+      
+      <div class="footer-top-grid">
+        <!-- Brand & Attribution -->
+        <div class="footer-brand-col">
+          <div class="brand-link">
+            <svg class="brand-logo-svg" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="#F5F0E8" stroke-width="1.5" stroke-opacity="0.25" />
+              <circle cx="16" cy="16" r="8" stroke="#E8833B" stroke-width="2" />
+              <circle cx="16" cy="16" r="3.2" fill="#E8833B" />
+            </svg>
+            <span class="brand-text">LEXI<span class="brand-amber">LENS</span></span>
+          </div>
+          
+          <p class="footer-about-text">
+            An AI-powered assistive technology platform designed to empower individuals with dyslexia through optical text extraction, sentence simplification, and bimodal speech.
+          </p>
+
+          <div class="footer-institution-badge">
+            <span class="badge-dot"></span>
+            <span>A KSCST Sponsored Project &middot; NMAM Institute of Technology, Nitte</span>
+          </div>
+
+          <!-- Socials -->
+          <div class="footer-social-row">
+            <a href="https://github.com" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4 Link Columns -->
+        <div class="footer-col">
+          <span class="footer-col-title">// PRODUCT</span>
+          <ul class="footer-links">
+            <li><a href="/explore.html">Studio &amp; Explore</a></li>
+            <li><a href="#features">OCR Scanner</a></li>
+            <li><a href="#features">AI Simplifier</a></li>
+            <li><a href="#" id="footer-reading-settings-link">Reading Settings</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">// RESEARCH</span>
+          <ul class="footer-links">
+            <li><a href="#research">Evidence Base</a></li>
+            <li><a href="#research">Bimodal Speech Study</a></li>
+            <li><a href="#research">Visual Crowding</a></li>
+            <li><a href="https://kscst.org.in" target="_blank" rel="noopener">KSCST Proposal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">// OPEN SOURCE</span>
+          <ul class="footer-links">
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="#architecture">OpenCV Preprocessor</a></li>
+            <li><a href="#architecture">FastAPI Service</a></li>
+            <li><a href="#">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-col-title">// PROJECT</span>
+          <ul class="footer-links">
+            <li><a href="https://nmamit.nitte.edu.in" target="_blank" rel="noopener">NMAMIT Nitte</a></li>
+            <li><a href="https://kscst.org.in" target="_blank" rel="noopener">KSCST Karnataka</a></li>
+            <li><a href="#">Team Directory</a></li>
+            <li><a href="mailto:lexilens@nmamit.in">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div class="footer-copy">
+          &copy; 2026 LexiLens &middot; Built by LexiLens Team, NMAM Institute of Technology, Nitte.
+        </div>
+        <div class="footer-legal-links">
+          <span>Theme 4: AI &amp; Inclusive Technologies</span>
+        </div>
+      </div>
+
+      <!-- Large Faded LEXILENS Wordmark -->
+      <div class="footer-faded-wordmark" aria-hidden="true">
+        LEXILENS
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

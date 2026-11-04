@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Lexi Lens — Understand Complex Information. Instantly.</title>
+  <meta name="title" content="Lexi Lens — Understand Complex Information. Instantly." />
+  <meta name="description" content="Lexi Lens uses AI to transform complex documents and text into clear, concise, and actionable understanding. Built for students, researchers, developers, and professionals." />
+  <meta name="keywords" content="AI document analysis, text understanding, research paper summarizer, semantic deconstruction, knowledge extraction, developer AI, technical documentation" />
+  <meta name="author" content="Lexi Lens" />
+  <meta name="theme-color" content="#080808" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lexilens.ai/" />
+  <meta property="og:title" content="Lexi Lens — Understand Complex Information. Instantly." />
+  <meta property="og:description" content="AI-powered document understanding that transforms complex content into clear insights, summaries, and actionable information in seconds." />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://lexilens.ai/" />
+  <meta property="twitter:title" content="Lexi Lens — Understand Complex Information. Instantly." />
+  <meta property="twitter:description" content="AI-powered document understanding that transforms complex content into clear insights, summaries, and actionable information in seconds." />
+  <meta property="twitter:image" content="/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Grain Overlay Filter -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Announcement Bar -->
+  <aside id="announcement-bar" class="announcement-bar" aria-label="Product announcement">
+    <div class="announcement-container">
+      <a href="#interactive-demo" class="announcement-link">
+        <span class="announcement-badge">NEW v2.4</span>
+        <span class="announcement-text">KNOWLEDGE ENGINE RELEASED: MULTI-MODAL DOCUMENT UNDERSTANDING IS LIVE</span>
+        <span class="announcement-arrow">→</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sticky Navbar -->
+  <header id="site-header" class="site-header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <div class="nav-left">
+        <a href="#" class="brand-logo" aria-label="Lexi Lens Home">
+          <svg class="brand-glyph" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" stroke="#F5F0E8" stroke-width="1.5" stroke-opacity="0.25" />
+            <circle cx="16" cy="16" r="9" stroke="#E7FF3F" stroke-width="1.75" />
+            <circle cx="16" cy="16" r="3.5" fill="#E7FF3F" />
+            <line x1="2" y1="16" x2="8" y2="16" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.4" />
+            <line x1="24" y1="16" x2="30" y2="16" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.4" />
+            <line x1="16" y1="2" x2="16" y2="8" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.4" />
+            <line x1="16" y1="24" x2="16" y2="30" stroke="#F5F0E8" stroke-width="1.2" stroke-opacity="0.4" />
+          </svg>
+          <span class="brand-name">LEXI<span class="brand-accent">LENS</span></span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li class="nav-item has-dropdown">
+            <button class="nav-link-btn" aria-expanded="false">
+              <span>Product</span>
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#features" class="dropdown-item">
+                <span class="dropdown-item-title">// Text Analysis</span>
+                <span class="dropdown-item-desc">Deep contextual semantic parsing</span>
+              </a>
+              <a href="#features" class="dropdown-item">
+                <span class="dropdown-item-title">// Synthesis Engine</span>
+                <span class="dropdown-item-desc">Lossless structured summaries</span>
+              </a>
+              <a href="#features" class="dropdown-item">
+                <span class="dropdown-item-title">// Intelligent Insights</span>
+                <span class="dropdown-item-desc">Implicit pattern & risk extraction</span>
+              </a>
+              <a href="#interactive-demo" class="dropdown-item">
+                <span class="dropdown-item-title">// Live Workbench</span>
+                <span class="dropdown-item-desc">Interactive execution playground</span>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item has-dropdown">
+            <button class="nav-link-btn" aria-expanded="false">
+              <span>Solutions</span>
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#interactive-demo" class="dropdown-item">
+                <span class="dropdown-item-title">// For Researchers</span>
+                <span class="dropdown-item-desc">Deconstruct dense academic literature</span>
+              </a>
+              <a href="#interactive-demo" class="dropdown-item">
+                <span class="dropdown-item-title">// For Developers</span>
+                <span class="dropdown-item-desc">Parse RFCs, protocols, and APIs</span>
+              </a>
+              <a href="#interactive-demo" class="dropdown-item">
+                <span class="dropdown-item-title">// For Professionals</span>
+                <span class="dropdown-item-desc">Audit contracts, reports, and memos</span>
+              </a>
+              <a href="#interactive-demo" class="dropdown-item">
+                <span class="dropdown-item-title">// For Students</span>
+                <span class="dropdown-item-desc">Master complex textbooks in minutes</span>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#developers-sec" class="nav-link">Developers</a>
+          </li>
+          <li class="nav-item">
+            <a href="#pricing" class="nav-link">Pricing</a>
+          </li>
+          <li class="nav-item has-dropdown">
+            <button class="nav-link-btn" aria-expanded="false">
+              <span>Resources</span>
+              <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#testimonials" class="dropdown-item">
+                <span class="dropdown-item-title">// Benchmarks</span>
+                <span class="dropdown-item-desc">Comprehension fidelity tests</span>
+              </a>
+              <a href="#developers-sec" class="dropdown-item">
+                <span class="dropdown-item-title">// API Reference</span>
+                <span class="dropdown-item-desc">REST & streaming endpoints</span>
+              </a>
+              <a href="#footer" class="dropdown-item">
+                <span class="dropdown-item-title">// System Status</span>
+                <span class="dropdown-item-desc">99.98% cluster availability</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Nav Actions -->
+      <div class="nav-right">
+        <a href="#login-modal" class="btn-ghost-nav" id="btn-login-trigger">Log in</a>
+        <button class="btn-primary-nav" id="btn-nav-cta">
+          <span>Start Exploring</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <!-- Mobile Hamburger Button -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Full-screen Navigation Overlay -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay" aria-hidden="true">
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <span class="brand-name">LEXI<span class="brand-accent">LENS</span></span>
+        <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close navigation menu">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#features" class="mobile-link">// 01 &nbsp; Platform Capabilities</a>
+        <a href="#framework" class="mobile-link">// 02 &nbsp; Clarity Pipeline</a>
+        <a href="#interactive-demo" class="mobile-link">// 03 &nbsp; Live Workbench</a>
+        <a href="#developers-sec" class="mobile-link">// 04 &nbsp; Developer API</a>
+        <a href="#testimonials" class="mobile-link">// 05 &nbsp; Peer Reviews</a>
+        <a href="#pricing" class="mobile-link">// 06 &nbsp; Pricing Tiers</a>
+      </div>
+      <div class="mobile-nav-footer">
+        <button class="btn-primary-nav full-width" id="mobile-cta-btn">
+          <span>Start Exploring</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-ghost-nav full-width" id="mobile-login-btn">Log in to Console</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-glow-blob" aria-hidden="true"></div>
+      <div class="section-container hero-container">
+        
+        <!-- Left / Top Column: Editorial Copy -->
+        <div class="hero-copy-column">
+          <div class="eyebrow-container">
+            <span class="terminal-tag">// AI-POWERED DOCUMENT &amp; TEXT ANALYSIS PLATFORM</span>
+          </div>
+          
+          <h1 class="hero-headline">
+            Understand complex information. <br />
+            <span class="editorial-italic">Instantly.</span>
+          </h1>
+
+          <p class="hero-subhead">
+            Lexi Lens uses AI to analyze documents, uncover important insights, and turn complex content into clear, actionable understanding—in seconds, not hours.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-primary" id="hero-primary-cta">
+              <span>Start Exploring</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="#features" class="btn-secondary">
+              <span>Explore Features</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3V11M7 11L3 7M7 11L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-reassurance">
+            <span class="reassurance-dot"></span>
+            <span>No credit card required</span>
+            <span class="reassurance-divider">·</span>
+            <span>Start in minutes</span>
+            <span class="reassurance-divider">·</span>
+            <span>Built for production</span>
+          </div>
+
+          <!-- Mini Key Metric Pill Strip -->
+          <div class="hero-metrics-strip">
+            <div class="metric-pill">
+              <span class="metric-num">10x</span>
+              <span class="metric-lbl">Faster Comprehension</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-num">99.4%</span>
+              <span class="metric-lbl">Extraction Fidelity</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-num">&lt;240ms</span>
+              <span class="metric-lbl">Analysis Latency</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right / Bottom Column: Live Product Demonstration Console -->
+        <div class="hero-demo-column">
+          <div class="console-window" id="hero-console">
+            <!-- Window Titlebar -->
+            <div class="console-titlebar">
+              <div class="window-controls">
+                <span class="win-btn close"></span>
+                <span class="win-btn min"></span>
+                <span class="win-btn max"></span>
+              </div>
+              <div class="console-title">
+                <span class="status-indicator-live">
+                  <span class="pulse-dot"></span> LIVE
+                </span>
+                <span class="console-file-tag">engine.lexilens.internal/v2/analyze</span>
+              </div>
+              <div class="console-actions">
+                <button class="copy-code-btn" id="hero-copy-btn" title="Copy output">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M10 2H3.5C2.67 2 2 2.67 2 3.5V10" stroke="currentColor" stroke-width="1.2"/></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Console Body -->
+            <div class="console-body">
+              
+              <!-- SECTION: // INPUT -->
+              <div class="terminal-block input-block">
+                <div class="terminal-label">// INPUT</div>
+                <div class="terminal-content">
+                  <p class="code-line"><span class="cmd-prefix">&gt;</span> <span class="cmd-text highlight-yellow">lexi.analyze</span>(<span class="code-str">"RFC-942_Raft_Consensus_Spec.pdf"</span>, <span class="code-opt">{ depth: "deep_semantic", extract: ["invariants", "vulnerabilities"] }</span>)</p>
+                </div>
+              </div>
+
+              <!-- SECTION: // THINKING -->
+              <div class="terminal-block thinking-block">
+                <div class="terminal-label">// THINKING</div>
+                <div class="terminal-content steps-list">
+                  <div class="step-item active">
+                    <span class="step-num">[1/3]</span>
+                    <span class="step-text">Deconstructing multi-page Raft/Paxos state machine specifications...</span>
+                    <span class="step-status">done (42ms)</span>
+                  </div>
+                  <div class="step-item active">
+                    <span class="step-num">[2/3]</span>
+                    <span class="step-text">Isolating split-brain split-vote edge conditions &amp; election timeouts...</span>
+                    <span class="step-status">done (68ms)</span>
+                  </div>
+                  <div class="step-item active">
+                    <span class="step-num">[3/3]</span>
+                    <span class="step-text">Synthesizing consensus guarantees into actionable deployment invariants.</span>
+                    <span class="step-status">done (51ms)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION: // TOOL CALL -->
+              <div class="terminal-block tool-call-block">
+                <div class="terminal-label">// TOOL CALL</div>
+                <div class="terminal-content tool-call-code">
+                  <code>
+                    <span class="token-fn">lexi_runtime.semantic_graph_extract</span>(chunk_size=<span class="token-num">1024</span>, model=<span class="code-str">"lexi-core-v2"</span>)<br />
+                    <span class="token-fn">lexi_runtime.synthesize_invariants</span>(confidence_threshold=<span class="token-num">0.992</span>, format=<span class="code-str">"structured_actionable"</span>)
+                  </code>
+                </div>
+              </div>
+
+              <!-- SECTION: // OUTPUT -->
+              <div class="terminal-block output-block">
+                <div class="terminal-label">// OUTPUT <span class="badge-confidence">Confidence 99.4%</span></div>
+                <div class="terminal-content output-box" id="hero-output-content">
+                  <div class="output-header-bar">
+                    <span class="output-title">STRUCTURED UNDERSTANDING REPORT</span>
+                    <span class="output-timing">Generated in 161ms</span>
+                  </div>
+
+                  <div class="output-text-area">
+                    <p class="output-summary">
+                      <strong>Executive Insight:</strong> The specification prioritizes linearizable safety over network partition availability (CP model). Leader election requires strict majority quorum <span class="highlight-code">⌊N/2⌋ + 1</span>, preventing split-brain states under non-byzantine asymmetric drops.
+                    </p>
+
+                    <div class="output-matrix">
+                      <div class="matrix-card">
+                        <span class="matrix-tag tag-yellow">CRITICAL INVARIANT</span>
+                        <p class="matrix-desc">Election timeout must strictly exceed cluster broadcast time by 10x to prevent randomized candidate livelocks.</p>
+                      </div>
+                      <div class="matrix-card">
+                        <span class="matrix-tag tag-lavender">ACTIONABLE CHECKLIST</span>
+                        <p class="matrix-desc">Enforce monotonic term checks prior to responding to AppendEntries RPCs; refuse stale term heartbeats.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Console Status Footer -->
+            <div class="console-footer">
+              <span class="cursor-indicator"><span class="terminal-cursor"></span> Ready for streaming prompt</span>
+              <span class="runtime-specs">RAM: 42MB · VRAM: 0 · Local Sandbox Active</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF / PARTNERS LOGO STRIP -->
+    <section id="social-proof" class="social-proof-section">
+      <div class="section-container">
+        <div class="social-proof-eyebrow">
+          <span>TRUSTED BY RESEARCHERS, ENGINEERS &amp; TEAMS AT</span>
+        </div>
+        <div class="logo-marquee-wrapper">
+          <div class="logo-grid">
+            <div class="logo-item" title="Cognitive AI Labs">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.8"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.8"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>COGNITIVE.AI</span>
+            </div>
+            <div class="logo-item" title="VectorScale Systems">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>VECTORSCALE</span>
+            </div>
+            <div class="logo-item" title="BioNovus Research">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 3V21M3 12H21" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>BIONOVUS</span>
+            </div>
+            <div class="logo-item" title="Helix Data Corp">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12C4 8 8 4 12 4C16 4 20 8 20 12C20 16 16 20 12 20" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+              <span>HELIX SYSTEMS</span>
+            </div>
+            <div class="logo-item" title="Stanford Applied Research">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 9V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V9L12 2Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 22V12H15V22" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>STANFORD LABS</span>
+            </div>
+            <div class="logo-item" title="Apex Capital Intelligence">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 20L12 4L21 20H3Z" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="13" x2="16" y2="13" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>APEX INTEL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND POSITIONING & CLARITY PIPELINE -->
+    <section id="framework" class="framework-section">
+      <div class="section-container">
+        <div class="framework-header">
+          <div class="terminal-tag">// THE CLARITY PIPELINE</div>
+          <h2 class="section-title">
+            Not just another AI summarizer. <br />
+            <span class="editorial-italic">A deep comprehension engine.</span>
+          </h2>
+          <p class="section-lead">
+            Traditional AI tools merely shave words off a document. Lexi Lens deconstructs complex arguments, verifies conceptual dependencies, and converts raw density into actionable clarity.
+          </p>
+        </div>
+
+        <div class="framework-pipeline-grid">
+          <div class="pipeline-step">
+            <div class="step-badge">STEP 01</div>
+            <div class="step-title">Complex Content</div>
+            <p class="step-desc">Dense technical whitepapers, legal contracts, research publications, or complex architecture RFCs.</p>
+            <div class="step-arrow">→</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge highlight">STEP 02</div>
+            <div class="step-title">AI Understanding</div>
+            <p class="step-desc">Neural concept extraction maps unstated assumptions, causal chains, and latent dependencies.</p>
+            <div class="step-arrow">→</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge">STEP 03</div>
+            <div class="step-title">Clear Insights</div>
+            <p class="step-desc">Structured executive syntheses with isolated risk factors, trade-offs, and critical axioms.</p>
+            <div class="step-arrow">→</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-badge highlight">STEP 04</div>
+            <div class="step-title">Faster Decisions</div>
+            <p class="step-desc">Move from hours of ambiguous skimming to decisive execution in seconds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION (Modular Asymmetric Grid) -->
+    <section id="features" class="features-section">
+      <div class="section-container">
+        
+        <div class="features-header">
+          <div class="terminal-tag">// PLATFORM CAPABILITIES</div>
+          <h2 class="section-title">
+            Engineered to understand, <br />
+            <span class="editorial-italic">not merely abbreviate.</span>
+          </h2>
+          <p class="section-lead">
+            Four specialized analytical layers built to parse high-density technical, academic, and professional texts without sacrificing depth or accuracy.
+          </p>
+        </div>
+
+        <div class="features-asymmetric-grid">
+          
+          <!-- FEATURE 01 -->
+          <article class="feature-card large-card" id="feat-01">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="feature-meta">
+              <span class="tech-index">01</span>
+              <span class="feature-tag">// SEMANTIC DECONSTRUCTION</span>
+            </div>
+            
+            <h3 class="feature-heading">AI-Powered Text Analysis</h3>
+            <p class="feature-description">
+              Analyze documents and text intelligently. Identify critical concepts, implicit arguments, and structural hierarchy across multi-disciplinary corpora.
+            </p>
+
+            <!-- Visual Component: Interactive Concept Deconstruction Tree -->
+            <div class="feature-visual-box">
+              <div class="visual-header">
+                <span class="dot-ind"></span>
+                <span>SEMANTIC CONCEPT MAPPING</span>
+                <span class="visual-badge">DEEP PARSE</span>
+              </div>
+              <div class="visual-body concept-tree-visual">
+                <div class="tree-root">
+                  <div class="tree-node active-node">
+                    <span class="node-badge">CORE THESIS</span>
+                    <span class="node-title">Quantum Error Correction (Surface Codes)</span>
+                  </div>
+                  <div class="tree-branches">
+                    <div class="tree-branch">
+                      <span class="branch-line"></span>
+                      <div class="tree-node">
+                        <span class="node-badge">DEPENDENCY</span>
+                        <span>Syndrome Measurement (Lattice)</span>
+                      </div>
+                    </div>
+                    <div class="tree-branch">
+                      <span class="branch-line"></span>
+                      <div class="tree-node highlight-node">
+                        <span class="node-badge badge-alert">CRITICAL LIMIT</span>
+                        <span>Threshold Limit: p &lt; 1.1%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-action">
+              <button class="view-details-btn" data-feature="1">
+                <span>View details</span>
+                <span class="action-arrow">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- FEATURE 02 -->
+          <article class="feature-card" id="feat-02">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="feature-meta">
+              <span class="tech-index">02</span>
+              <span class="feature-tag">// SYNTHESIS ENGINE</span>
+            </div>
+            
+            <h3 class="feature-heading">Smart Summarization</h3>
+            <p class="feature-description">
+              Convert lengthy documents into concise summaries while preserving the most important qualifiers, quantitative data, and operational context.
+            </p>
+
+            <!-- Visual Component: Compression Fidelity Slider Preview -->
+            <div class="feature-visual-box compact">
+              <div class="visual-header">
+                <span class="dot-ind"></span>
+                <span>FIDELITY CONTROLS</span>
+              </div>
+              <div class="visual-body compression-visual">
+                <div class="compression-modes">
+                  <span class="mode-pill">Abstract</span>
+                  <span class="mode-pill active">Lossless Executive</span>
+                  <span class="mode-pill">Action Checklist</span>
+                </div>
+                <div class="compression-stat">
+                  <div class="stat-bar-container">
+                    <div class="stat-bar-fill" style="width: 88%;"></div>
+                  </div>
+                  <div class="stat-label-row">
+                    <span>Nuance Retention: 98.7%</span>
+                    <span>Compression: 85%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-action">
+              <button class="view-details-btn" data-feature="2">
+                <span>View details</span>
+                <span class="action-arrow">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- FEATURE 03 -->
+          <article class="feature-card" id="feat-03">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="feature-meta">
+              <span class="tech-index">03</span>
+              <span class="feature-tag">// ACTIONABLE EXTRACTION</span>
+            </div>
+            
+            <h3 class="feature-heading">Intelligent Insights</h3>
+            <p class="feature-description">
+              Extract key points and meaningful insights that users typically overlook in dense text—including implicit risks, unstated assumptions, and required actions.
+            </p>
+
+            <!-- Visual Component: Insight Matrix Cards -->
+            <div class="feature-visual-box compact">
+              <div class="visual-header">
+                <span class="dot-ind"></span>
+                <span>INSIGHT EXTRACTOR</span>
+              </div>
+              <div class="visual-body insights-visual">
+                <div class="insight-chip risk">
+                  <span class="chip-label">RISK FACTOR:</span>
+                  <span class="chip-content">Section 14 violates European GDPR data residency mandates.</span>
+                </div>
+                <div class="insight-chip opportunity">
+                  <span class="chip-label">UNEXPLOITED AXIOM:</span>
+                  <span class="chip-content">Cache-invalidation overhead can be bypassed via Merkle-DAG hashing.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-action">
+              <button class="view-details-btn" data-feature="3">
+                <span>View details</span>
+                <span class="action-arrow">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- FEATURE 04 -->
+          <article class="feature-card large-card" id="feat-04">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="feature-meta">
+              <span class="tech-index">04</span>
+              <span class="feature-tag">// INTUITIVE RUNTIME</span>
+            </div>
+            
+            <h3 class="feature-heading">Fast &amp; User-Friendly</h3>
+            <p class="feature-description">
+              A calm, focused interface engineered for cognitive clarity. Ingest PDFs, markdown, raw text, or web links and generate deep understanding in sub-second bursts.
+            </p>
+
+            <!-- Visual Component: High-speed ingestion visualizer -->
+            <div class="feature-visual-box">
+              <div class="visual-header">
+                <span class="dot-ind"></span>
+                <span>STREAMING RUNTIME DOCK</span>
+                <span class="visual-badge">ZERO LATENCY</span>
+              </div>
+              <div class="visual-body runtime-visual">
+                <div class="runtime-dropzone">
+                  <div class="drop-icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="#E7FF3F" stroke-width="1.8"/><polyline points="14 2 14 8 20 8" stroke="#E7FF3F" stroke-width="1.8"/><line x1="12" y1="18" x2="12" y2="12" stroke="#F5F0E8" stroke-width="1.5"/><polyline points="9 15 12 12 15 15" stroke="#F5F0E8" stroke-width="1.5"/></svg>
+                  </div>
+                  <div class="drop-text-meta">
+                    <span class="drop-title">Drop PDF, TXT, EPUB or paste arXiv / GitHub RFC URL</span>
+                    <span class="drop-sub">Parses up to 400 pages with full OCR and citation cross-referencing</span>
+                  </div>
+                  <button class="btn-drop-action" id="feat-try-drop-btn">Sample Run</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-action">
+              <button class="view-details-btn" data-feature="4">
+                <span>View details</span>
+                <span class="action-arrow">→</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL-WIDTH INTERACTIVE PRODUCT DEMO WORKBENCH -->
+    <section id="interactive-demo" class="interactive-demo-section">
+      <div class="section-container">
+        
+        <div class="demo-section-header">
+          <div class="terminal-tag">// SEE IT IN ACTION</div>
+          <h2 class="section-title">
+            Experience document understanding <br />
+            <span class="editorial-italic">in real time.</span>
+          </h2>
+          <p class="section-lead">
+            Choose a sample document below or toggle between pipeline phases to inspect how Lexi Lens parses, deliberates, and surfaces critical knowledge.
+          </p>
+
+          <!-- Document Profile Presets -->
+          <div class="preset-selector-bar" role="tablist" aria-label="Sample Documents">
+            <span class="preset-label">SAMPLE DOCUMENT:</span>
+            <button class="preset-btn active" data-preset="quantum" role="tab" aria-selected="true">
+              <span class="preset-dot"></span>
+              <span>1. Quantum Computing Research Paper</span>
+            </button>
+            <button class="preset-btn" data-preset="rfc" role="tab" aria-selected="false">
+              <span class="preset-dot"></span>
+              <span>2. Cloud Infrastructure Architecture RFC</span>
+            </button>
+            <button class="preset-btn" data-preset="clinical" role="tab" aria-selected="false">
+              <span class="preset-dot"></span>
+              <span>3. Clinical Trial Protocol (Phase III)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- The Big Interactive Workbench Panel -->
+        <div class="workbench-panel">
+          <!-- Workbench Header / Tabs -->
+          <div class="workbench-header">
+            <div class="tab-buttons-container" role="tablist">
+              <button class="workbench-tab active" data-tab="input" role="tab" aria-selected="true">
+                <span class="tab-indicator">//</span> Input
+              </button>
+              <button class="workbench-tab" data-tab="processing" role="tab" aria-selected="false">
+                <span class="tab-indicator">//</span> Processing
+              </button>
+              <button class="workbench-tab" data-tab="tools" role="tab" aria-selected="false">
+                <span class="tab-indicator">//</span> Tools
+              </button>
+              <button class="workbench-tab" data-tab="output" role="tab" aria-selected="false">
+                <span class="tab-indicator">//</span> Output
+              </button>
+            </div>
+
+            <div class="workbench-controls">
+              <div class="live-status-pill">
+                <span class="pulse-dot"></span>
+                <span>ENGINE: LEXI-V2.4 NEURAL</span>
+              </div>
+              <button class="btn-workbench-action" id="btn-run-simulation">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="3,2 10,6 3,10" fill="currentColor"/></svg>
+                <span>Re-Run Simulation</span>
+              </button>
+              <button class="copy-code-btn" id="workbench-copy-btn">
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M10 2H3.5C2.67 2 2 2.67 2 3.5V10" stroke="currentColor" stroke-width="1.2"/></svg>
+                <span>Copy View</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab Content Views -->
+          <div class="workbench-viewport">
+            
+            <!-- TAB 1: INPUT -->
+            <div class="tab-pane active" id="pane-input">
+              <div class="pane-meta">
+                <span class="pane-info">// RAW INGESTION STREAM (DOC_ID: <span id="doc-id-display">DOC-8942-QC</span>)</span>
+                <span class="pane-stats">Tokens: 4,120 · Language: English (Academic) · Format: PDF/LateX</span>
+              </div>
+              <div class="pane-code-view">
+                <pre class="line-numbered-code"><code id="code-input-display">1: TITLE: Fault-Tolerant Surface Codes Under Biased Pauli-Z Noise
+2: ABSTRACT: Superconducting qubits exhibit physical noise dominated by dephasing errors (Z-bias &gt; 100:1).
+3: Standard rotated surface codes allocate identical distances dx = dz, resulting in suboptimal error thresholds.
+4: We propose an asymmetric rectangular surface lattice where X-stabilizer measurements are scheduled with
+5: continuous dynamical decoupling pulses. When bias ratio η &gt; 10^2, the threshold improves from 0.75% to 2.1%.
+6: METHODOLOGY: Syndrome measurements were executed across 72 transmon qubits configured on an 8x9 grid.
+7: CAVEAT: High-frequency crosstalk along diagonal couplers induces correlated 2-qubit phase slips when
+8: readout amplitudes exceed -18 dBm. This limits scalable coherence times to t &lt; 42 μs in current planar packaging.</code></pre>
+              </div>
+            </div>
+
+            <!-- TAB 2: PROCESSING -->
+            <div class="tab-pane" id="pane-processing">
+              <div class="pane-meta">
+                <span class="pane-info">// COGNITIVE TRACE &amp; STRUCTURAL DECONSTRUCTION</span>
+                <span class="pane-stats">Deliberation time: 132ms · Graph Nodes: 38 · Edges: 94</span>
+              </div>
+              <div class="processing-steps-container" id="processing-steps-display">
+                <div class="proc-step">
+                  <div class="proc-badge">PHASE 1</div>
+                  <div class="proc-details">
+                    <span class="proc-name">Axiomatic Dependency Mapping</span>
+                    <p class="proc-text">Identified premise: Pauli-Z bias allows asymmetric surface lattice geometry. Confirmed mathematical threshold boundary shift from 0.75% to 2.1% under η &gt; 100.</p>
+                  </div>
+                </div>
+                <div class="proc-step">
+                  <div class="proc-badge highlight">PHASE 2</div>
+                  <div class="proc-details">
+                    <span class="proc-name">Anomaly &amp; Limitation Extraction</span>
+                    <p class="proc-text">Flagged hidden bottleneck: Diagonal coupler crosstalk at &gt; -18 dBm induces correlated 2-qubit phase slips. Coherence ceiling identified at 42 μs.</p>
+                  </div>
+                </div>
+                <div class="proc-step">
+                  <div class="proc-badge">PHASE 3</div>
+                  <div class="proc-details">
+                    <span class="proc-name">Synthesizing Decision Matrix</span>
+                    <p class="proc-text">Formulating actionable takeaways for hardware design teams: requires physical attenuation shielding or altered packaging geometry.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 3: TOOLS -->
+            <div class="tab-pane" id="pane-tools">
+              <div class="pane-meta">
+                <span class="pane-info">// EXECUTED AGENTIC TOOLS &amp; INTEGRATIONS</span>
+                <span class="pane-stats">Tools Invoked: 3 · External Queries: 2 · All Verifications Passed</span>
+              </div>
+              <div class="tools-execution-list" id="tools-display">
+                <div class="tool-call-row">
+                  <span class="tool-status-dot"></span>
+                  <div class="tool-info">
+                    <span class="tool-call-name">lexi.ast_parse_equations</span>
+                    <span class="tool-param">{ target: "threshold_boundary_equation", formal_verification: true }</span>
+                  </div>
+                  <span class="tool-latency">24ms</span>
+                </div>
+                <div class="tool-call-row">
+                  <span class="tool-status-dot"></span>
+                  <div class="tool-info">
+                    <span class="tool-call-name">lexi.cross_reference_citations</span>
+                    <span class="tool-param">{ doi: "10.1103/PhysRevA.90.062320", claim: "biased_noise_threshold" }</span>
+                  </div>
+                  <span class="tool-latency">58ms</span>
+                </div>
+                <div class="tool-call-row">
+                  <span class="tool-status-dot"></span>
+                  <div class="tool-info">
+                    <span class="tool-call-name">lexi.semantic_graph_synthesizer</span>
+                    <span class="tool-param">{ output_schema: "lexi.v2.ActionableReport" }</span>
+                  </div>
+                  <span class="tool-latency">31ms</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 4: OUTPUT -->
+            <div class="tab-pane" id="pane-output">
+              <div class="pane-meta">
+                <span class="pane-info">// ACTIONABLE KNOWLEDGE SYNTHESIS</span>
+                <span class="pane-stats">Reading time saved: ~45 min · Confidence: 99.4%</span>
+              </div>
+              <div class="output-preview-container" id="output-view-display">
+                <div class="output-block-card">
+                  <div class="card-eyebrow">// EXECUTIVE UNDERSTANDING</div>
+                  <p class="card-body-text">
+                    The paper proves that tailoring surface codes to asymmetric dephasing (Z-noise) dramatically expands quantum error thresholds (from 0.75% to 2.1%), but real-world scalability is currently blocked by planar packaging crosstalk exceeding -18 dBm.
+                  </p>
+                </div>
+
+                <div class="output-grid-two">
+                  <div class="output-block-card highlight-border">
+                    <div class="card-eyebrow">// KEY TAKEAWAYS &amp; INSIGHTS</div>
+                    <ul class="key-insights-list">
+                      <li><strong>Asymmetric Lattice:</strong> Rectangular geometry outperforms square layouts by 2.8x when Z-bias ratio &gt; 100.</li>
+                      <li><strong>Hidden Blocker:</strong> Readout pulse amplitudes over -18 dBm trigger correlated 2-qubit phase slips, capping coherence at 42 μs.</li>
+                    </ul>
+                  </div>
+
+                  <div class="output-block-card">
+                    <div class="card-eyebrow">// ACTIONABLE RECOMMENDATION</div>
+                    <p class="action-recommendation">
+                      Do not manufacture full 72-qubit planar substrates until diagonal coupler spacing is widened or 3D flip-chip integration is adopted.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Workbench Footer Bar -->
+          <div class="workbench-footer">
+            <span class="workbench-status-text">
+              <span class="terminal-cursor"></span>
+              Document understanding completed in 0.16s · Ready for follow-up query
+            </span>
+            <button class="btn-workbench-open" id="btn-open-interactive-sandbox">
+              <span>Test Your Own Document</span> →
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DEVELOPER SECTION & API SNIPPET -->
+    <section id="developers-sec" class="developers-section">
+      <div class="section-container">
+        <div class="dev-header">
+          <div class="terminal-tag">// DEVELOPERS &amp; INTEGRATIONS</div>
+          <h2 class="section-title">
+            Programmatic comprehension. <br />
+            <span class="editorial-italic">One API call away.</span>
+          </h2>
+          <p class="section-lead">
+            Embed Lexi Lens directly into your knowledge ingestion pipelines, Slack bots, IDE plugins, or automated research agents with sub-200ms streaming responses.
+          </p>
+        </div>
+
+        <div class="dev-layout">
+          <div class="dev-docs-column">
+            <div class="dev-feature-item">
+              <span class="dev-index">// 01</span>
+              <h4>Native Python &amp; TypeScript SDKs</h4>
+              <p>Type-safe schemas, automatic retry handling, and streaming structured outputs out of the box.</p>
+            </div>
+            <div class="dev-feature-item">
+              <span class="dev-index">// 02</span>
+              <h4>Sub-200ms Streaming Ingestion</h4>
+              <p>Stream tokens and structural insight nodes via Server-Sent Events (SSE) or WebSockets.</p>
+            </div>
+            <div class="dev-feature-item">
+              <span class="dev-index">// 03</span>
+              <h4>Deterministic Extraction Schemas</h4>
+              <p>Enforce strict Pydantic or Zod models for zero-hallucination downstream database writes.</p>
+            </div>
+          </div>
+
+          <div class="dev-code-column">
+            <div class="code-editor-card">
+              <div class="editor-titlebar">
+                <div class="editor-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="editor-tab active">analyze_document.ts</div>
+                <button class="copy-code-btn" id="dev-copy-btn">Copy</button>
+              </div>
+              <div class="editor-body">
+                <pre><code><span class="token-kw">import</span> { LexiLens } <span class="token-kw">from</span> <span class="code-str">'@lexilens/sdk'</span>;
+
+<span class="token-kw">const</span> lexi = <span class="token-kw">new</span> <span class="token-fn">LexiLens</span>({ apiKey: process.env.LEXILENS_API_KEY });
+
+<span class="token-cmt">// Analyze dense technical documentation</span>
+<span class="token-kw">const</span> understanding = <span class="token-kw">await</span> lexi.documents.<span class="token-fn">understand</span>({
+  source: <span class="code-str">'https://arxiv.org/pdf/2403.09214.pdf'</span>,
+  pipeline: <span class="code-str">'deep_semantic'</span>,
+  extract: [<span class="code-str">'assumptions'</span>, <span class="code-str">'critical_risks'</span>, <span class="code-str">'action_items'</span>],
+  options: {
+    format: <span class="code-str">'structured_json'</span>,
+    preserveNuance: <span class="token-num">true</span>
+  }
+});
+
+console.<span class="token-fn">log</span>(understanding.executiveSynthesis);
+console.<span class="token-fn">log</span>(understanding.uncoveredRisks);</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (Editorial Staggered Grid) -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="section-container">
+        
+        <div class="testimonials-header">
+          <div class="terminal-tag">// PEER REVIEWS &amp; DEPLOYMENTS</div>
+          <h2 class="section-title">
+            Built for people who cannot afford <br />
+            <span class="editorial-italic">to miss critical details.</span>
+          </h2>
+          <p class="section-lead">
+            Here is how researchers, systems architects, and regulatory analysts rely on Lexi Lens for day-to-day high-stakes reading.
+          </p>
+        </div>
+
+        <div class="testimonials-staggered-grid">
+          
+          <!-- Testimonial 1 -->
+          <blockquote class="testimonial-card">
+            <div class="testimonial-quote-glyph">“</div>
+            <p class="testimonial-quote">
+              Lexi Lens cut our literature review cycle by over 60%. What makes it indispensable is that it doesn’t hallucinate or compress away edge-case nuances; it flags assumptions and maps the paper’s logical spine cleanly.
+            </p>
+            <footer class="testimonial-author">
+              <div class="author-avatar-badge">EV</div>
+              <div class="author-meta">
+                <cite class="author-name">Dr. Elena Vance</cite>
+                <span class="author-role">Senior ML Research Fellow, Applied Cognitive Labs</span>
+              </div>
+            </footer>
+          </blockquote>
+
+          <!-- Testimonial 2 -->
+          <blockquote class="testimonial-card featured-testimonial">
+            <div class="testimonial-quote-glyph">“</div>
+            <p class="testimonial-quote">
+              Parsing through 50-page vendor RFCs and compliance audits used to take our lead engineers three full days. Lexi Lens extracts the exact architectural constraints and security caveats in under twenty seconds.
+            </p>
+            <footer class="testimonial-author">
+              <div class="author-avatar-badge">MC</div>
+              <div class="author-meta">
+                <cite class="author-name">Marcus Chen</cite>
+                <span class="author-role">Staff Platform Architect, VectorScale Systems</span>
+              </div>
+            </footer>
+          </blockquote>
+
+          <!-- Testimonial 3 -->
+          <blockquote class="testimonial-card">
+            <div class="testimonial-quote-glyph">“</div>
+            <p class="testimonial-quote">
+              Most summarizers give you generic paragraphs that miss critical caveats. Lexi Lens surfaces regulatory contradictions and clinical endpoints right up front. It is an understanding engine, not a gimmick.
+            </p>
+            <footer class="testimonial-author">
+              <div class="author-avatar-badge">SJ</div>
+              <div class="author-meta">
+                <cite class="author-name">Sarah Jenkins</cite>
+                <span class="author-role">Biotech IP &amp; Regulatory Analyst, BioNovus</span>
+              </div>
+            </footer>
+          </blockquote>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="pricing-section">
+      <div class="section-container">
+        <div class="pricing-header">
+          <div class="terminal-tag">// TRANSPARENT ACCESS TIERS</div>
+          <h2 class="section-title">
+            Simple, predictable pricing <br />
+            <span class="editorial-italic">for individual minds &amp; teams.</span>
+          </h2>
+          <p class="section-lead">
+            Start free, explore with real documents, and scale as your analytical workload expands.
+          </p>
+        </div>
+
+        <div class="pricing-cards-grid">
+          
+          <!-- TIER 1 -->
+          <div class="pricing-card">
+            <div class="tier-top">
+              <span class="tier-tag">// EXPLORER</span>
+              <h3 class="tier-name">Free</h3>
+              <p class="tier-desc">For students and individual curious readers needing quick document clarity.</p>
+              <div class="tier-price">
+                <span class="price-val">$0</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="tier-features">
+              <li><span class="chk">✓</span> 50 document analyses / month</li>
+              <li><span class="chk">✓</span> Up to 50 pages per document</li>
+              <li><span class="chk">✓</span> Lossless executive summaries</li>
+              <li><span class="chk">✓</span> Core insight &amp; assumption extractor</li>
+              <li><span class="chk">✓</span> Web workbench access</li>
+            </ul>
+            <button class="btn-tier-action" data-tier="explorer">Start Free</button>
+          </div>
+
+          <!-- TIER 2 (FEATURED) -->
+          <div class="pricing-card featured-tier">
+            <div class="featured-ribbon">MOST POPULAR</div>
+            <div class="tier-top">
+              <span class="tier-tag highlight">// PRO RESEARCHER</span>
+              <h3 class="tier-name">Professional</h3>
+              <p class="tier-desc">For researchers, developers, and analysts needing deep multi-document understanding.</p>
+              <div class="tier-price">
+                <span class="price-val">$24</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="tier-features">
+              <li><span class="chk highlight">✓</span> Unlimited document analyses</li>
+              <li><span class="chk highlight">✓</span> Up to 500 pages per document</li>
+              <li><span class="chk highlight">✓</span> Deep semantic graph deconstruction</li>
+              <li><span class="chk highlight">✓</span> Full API access (50k tokens/min)</li>
+              <li><span class="chk highlight">✓</span> Multi-document cross-synthesis</li>
+              <li><span class="chk highlight">✓</span> Priority neural inference cluster</li>
+            </ul>
+            <button class="btn-tier-action primary" data-tier="pro">Start Exploring Pro</button>
+          </div>
+
+          <!-- TIER 3 -->
+          <div class="pricing-card">
+            <div class="tier-top">
+              <span class="tier-tag">// LAB &amp; ENTERPRISE</span>
+              <h3 class="tier-name">Enterprise</h3>
+              <p class="tier-desc">For university labs, engineering organizations, and compliance departments.</p>
+              <div class="tier-price">
+                <span class="price-val">Custom</span>
+                <span class="price-period">/ organization</span>
+              </div>
+            </div>
+            <ul class="tier-features">
+              <li><span class="chk">✓</span> Dedicated self-hosted or VPC deployment</li>
+              <li><span class="chk">✓</span> Custom domain ontology finetuning</li>
+              <li><span class="chk">✓</span> SOC-2 Type II, HIPAA &amp; GDPR compliance</li>
+              <li><span class="chk">✓</span> Unlimited team members &amp; SSO</li>
+              <li><span class="chk">✓</span> 99.99% uptime SLA with 24/7 engineering</li>
+            </ul>
+            <button class="btn-tier-action" data-tier="enterprise">Contact Enterprise</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section id="final-cta" class="final-cta-section">
+      <div class="final-cta-bg-noise" aria-hidden="true"></div>
+      <div class="section-container final-cta-container">
+        
+        <div class="terminal-tag">// START BUILDING UNDERSTANDING</div>
+        
+        <h2 class="final-cta-headline">
+          Understand complex information. <br />
+          <span class="editorial-italic">Instantly.</span>
+        </h2>
+
+        <p class="final-cta-lead">
+          Join over 40,000 researchers, developers, and professionals who turn dense whitepapers, contracts, and architecture specs into immediate, actionable knowledge.
+        </p>
+
+        <div class="final-cta-buttons">
+          <button class="btn-primary" id="final-primary-cta">
+            <span>Start Exploring</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#features" class="btn-secondary">
+            <span>Explore Features</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <div class="final-reassurance">
+          <span>No credit card required · Free 14-day exploration · Built for production</span>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="site-footer">
+    <div class="section-container footer-container">
+      
+      <!-- Top Grid: Brand & Navigation -->
+      <div class="footer-top-grid">
+        
+        <!-- Left Brand Column -->
+        <div class="footer-brand-col">
+          <a href="#" class="brand-logo" aria-label="Lexi Lens Home">
+            <svg class="brand-glyph" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" stroke="#F5F0E8" stroke-width="1.5" stroke-opacity="0.25" />
+              <circle cx="16" cy="16" r="9" stroke="#E7FF3F" stroke-width="1.75" />
+              <circle cx="16" cy="16" r="3.5" fill="#E7FF3F" />
+            </svg>
+            <span class="brand-name">LEXI<span class="brand-accent">LENS</span></span>
+          </a>
+          <p class="footer-desc">
+            Lexi Lens uses AI to transform complex documents and text into clear, concise, and actionable understanding in seconds.
+          </p>
+
+          <!-- System Status Indicator -->
+          <div class="system-status-indicator">
+            <span class="status-live-dot"></span>
+            <span class="status-text">All systems operational · API 99.98%</span>
+          </div>
+
+          <!-- Social Links -->
+          <div class="social-links-row" aria-label="Social media channels">
+            <a href="https://github.com" class="social-icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://x.com" class="social-icon-btn" aria-label="X/Twitter" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://linkedin.com" class="social-icon-btn" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://discord.com" class="social-icon-btn" aria-label="Discord" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links Columns (Collapsible on Mobile) -->
+        <div class="footer-links-col">
+          <button class="footer-col-toggle" aria-expanded="false">
+            <span class="col-heading">// PRODUCT</span>
+            <span class="col-toggle-icon">+</span>
+          </button>
+          <ul class="col-links">
+            <li><a href="#features">Overview</a></li>
+            <li><a href="#features">Semantic Analysis</a></li>
+            <li><a href="#features">Lossless Synthesis</a></li>
+            <li><a href="#interactive-demo">Live Workbench</a></li>
+            <li><a href="#pricing">Pricing Plans</a></li>
+            <li><a href="#announcement-bar">Changelog (v2.4)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <button class="footer-col-toggle" aria-expanded="false">
+            <span class="col-heading">// DEVELOPERS</span>
+            <span class="col-toggle-icon">+</span>
+          </button>
+          <ul class="col-links">
+            <li><a href="#developers-sec">Documentation</a></li>
+            <li><a href="#developers-sec">REST &amp; SSE API</a></li>
+            <li><a href="#developers-sec">Python SDK</a></li>
+            <li><a href="#developers-sec">TypeScript SDK</a></li>
+            <li><a href="#developers-sec">Examples &amp; Cookbooks</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <button class="footer-col-toggle" aria-expanded="false">
+            <span class="col-heading">// COMPANY</span>
+            <span class="col-toggle-icon">+</span>
+          </button>
+          <ul class="col-links">
+            <li><a href="#framework">About Our Mission</a></li>
+            <li><a href="#testimonials">Customer Stories</a></li>
+            <li><a href="#pricing">Research Grants</a></li>
+            <li><a href="mailto:careers@lexilens.ai">Careers <span class="hiring-badge">We're hiring</span></a></li>
+            <li><a href="mailto:press@lexilens.ai">Press &amp; Media</a></li>
+            <li><a href="mailto:contact@lexilens.ai">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <button class="footer-col-toggle" aria-expanded="false">
+            <span class="col-heading">// RESOURCES</span>
+            <span class="col-toggle-icon">+</span>
+          </button>
+          <ul class="col-links">
+            <li><a href="#testimonials">Accuracy Benchmarks</a></li>
+            <li><a href="#framework">Help Center</a></li>
+            <li><a href="#privacy-modal" class="modal-link-trigger" data-modal="privacy">Security &amp; SOC-2</a></li>
+            <li><a href="#terms-modal" class="modal-link-trigger" data-modal="terms">Privacy Policy</a></li>
+            <li><a href="#footer">System Status</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener">Community Forum</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Newsletter Bar -->
+      <div class="footer-newsletter-row">
+        <div class="newsletter-info">
+          <span class="newsletter-title">// STAY AHEAD IN COGNITIVE AI</span>
+          <p class="newsletter-sub">Monthly research briefs on document intelligence, semantic parsing, and lossy vs lossless synthesis.</p>
+        </div>
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <label for="newsletter-email" class="sr-only">Enter your email</label>
+          <input 
+            type="email" 
+            id="newsletter-email" 
+            name="email" 
+            class="newsletter-input" 
+            placeholder="Enter your email" 
+            required 
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-newsletter" id="newsletter-btn">
+            <span>Subscribe</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Bottom Legal Row -->
+      <div class="footer-bottom-row">
+        <div class="copyright-text">
+          © 2026 Lexi Lens Inc. All rights reserved.
+        </div>
+        <div class="legal-links">
+          <a href="#privacy" class="legal-link" id="link-privacy">Privacy</a>
+          <span class="legal-sep">·</span>
+          <a href="#terms" class="legal-link" id="link-terms">Terms</a>
+          <span class="legal-sep">·</span>
+          <a href="#security" class="legal-link" id="link-security">Security</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE LIVE DOCUMENT WORKBENCH MODAL / DRAWER -->
+  <div id="sandbox-modal" class="app-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-sandbox-title">
+    <div class="modal-backdrop" id="sandbox-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="terminal-tag">// LIVE COGNITIVE WORKBENCH</span>
+          <h3 id="modal-sandbox-title">Analyze Custom Document or Text</h3>
+        </div>
+        <button class="modal-close-btn" id="sandbox-close-btn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="sandbox-input-panel">
+          <div class="input-header-row">
+            <label for="sandbox-user-input" class="sandbox-label">INPUT TEXT OR DOCUMENT STREAM:</label>
+            <div class="quick-sample-buttons">
+              <button type="button" class="sample-fill-btn" data-type="ai">Load AI Paper</button>
+              <button type="button" class="sample-fill-btn" data-type="contract">Load Legal NDA</button>
+              <button type="button" class="sample-fill-btn" data-type="clear">Clear</button>
+            </div>
+          </div>
+          <textarea 
+            id="sandbox-user-input" 
+            class="sandbox-textarea" 
+            rows="6" 
+            placeholder="Paste your dense research abstract, technical documentation, architectural decision record, or contract clause here..."
+          >The Byzantine Fault Tolerant consensus protocol utilizes a primary-backup state machine replication where the view-change mechanism is triggered upon timer expiry. During view change, replicas send VIEW-CHANGE messages with a prepared certificate proof. A critical liveness hazard occurs if network latency jitter induces premature view changes repeatedly, preventing transaction commitment. Mitigation mandates exponential timeout backoff with verified leader pre-flight ping checks.</textarea>
+          
+          <div class="sandbox-action-row">
+            <button class="btn-primary" id="btn-run-live-analysis">
+              <span>Run Deep Analysis</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="3,2 10,6 3,10" fill="currentColor"/></svg>
+            </button>
+            <div class="sandbox-telemetry" id="sandbox-telemetry">Status: Ready for submission</div>
+          </div>
+        </div>
+
+        <div class="sandbox-results-panel" id="sandbox-results-panel">
+          <div class="results-header">
+            <span class="results-title">// ACTIONABLE ANALYSIS RESULT</span>
+            <span class="results-time" id="sandbox-inference-time">Latency: 142ms</span>
+          </div>
+          <div class="sandbox-result-card" id="sandbox-result-card">
+            <div class="result-badge-row">
+              <span class="res-badge tag-yellow">EXECUTIVE COMPREHENSION</span>
+              <span class="res-badge tag-lavender">BFT CONSENSUS</span>
+            </div>
+            <p class="result-summary-text" id="sandbox-summary-text">
+              <strong>Core Takeaway:</strong> The protocol's primary vulnerability is network jitter triggering livelocks through cascading view changes before commits finalize. 
+            </p>
+            <div class="result-keypoints" id="sandbox-keypoints">
+              <div class="point-item">
+                <span class="bullet">▶</span>
+                <span><strong>Identified Risk:</strong> Livelock starvation during packet latency variance.</span>
+              </div>
+              <div class="point-item">
+                <span class="bullet">▶</span>
+                <span><strong>Mandatory Fix:</strong> Implement exponential backoff timeouts coupled with pre-flight leader probes.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE DETAILS MODAL -->
+  <div id="details-modal" class="app-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-details-title">
+    <div class="modal-backdrop" id="details-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="terminal-tag" id="details-tag">// FEATURE DEEP-DIVE</span>
+          <h3 id="modal-details-title">Architecture Specification</h3>
+        </div>
+        <button class="modal-close-btn" id="details-close-btn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="details-modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
